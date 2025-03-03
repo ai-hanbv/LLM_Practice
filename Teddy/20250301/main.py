@@ -1,5 +1,8 @@
 import streamlit as st
 from langchain_core.messages import ChatMessage
+from dotenv import load_dotenv
+
+load_dotenv()
 # streamlit run main.py
 
 # 만약 메세지 라는 키가 없으면 생성

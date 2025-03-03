@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "0301"
+name = "Teddy"
 version = "0.1.0"
 description = ""
 authors = ["min <hanbv@naver.com>"]
@@ -13,6 +13,7 @@ pydantic = "^2.7.4"
 langchain = "^0.3.19"
 langchain-community = "^0.3.18"
 python-dotenv = "^1.0.1"
+langchain-openai = "^0.3.7"
 
 
 [tool.poetry.group.dev.dependencies]
