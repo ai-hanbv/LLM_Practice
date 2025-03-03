@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "0301"
+version = "0.1.0"
+description = ""
+authors = ["min <hanbv@naver.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.12"
+streamlit = "^1.42.2"
+langchain-chroma = "^0.2.2"
+pydantic = "^2.7.4"
+langchain = "^0.3.19"
+langchain-community = "^0.3.18"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
