@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "modu"
+version = "0.1.0"
+description = ""
+authors = ["min <han_thesis@naver.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+crawl4ai = "^0.5.0"
+nest-asyncio = "^1.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
