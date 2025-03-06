@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.11"
 crawl4ai = "^0.5.0"
 nest-asyncio = "^1.6.0"
+pandas = "^2.2.3"
+numpy = "^2.2.3"
 
 
 [build-system]
