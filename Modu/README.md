@@ -12,60 +12,12 @@ crawl4ai-doctor
 ```
 
 ```python
-import asyncio
-import nest_asyncio
-import os
-import json
-from datetime import datetime
-from pydantic import BaseModel, Field
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-# 이 부분 추가하였습니다 . crawl4ai = "^0.5.0" 입니다.
+# Docs Code
+from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LlmConfig
+# 오류 발생, 없는 코드
+# 수정
 from crawl4ai.async_configs import LlmConfig
-from crawl4ai.extraction_strategy import LLMExtractionStrategy
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-import sys
-if sys.platform == 'win32':
-    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-nest_asyncio.apply(loop)
-
-class NaverNewsArticle(BaseModel):
-    title: str = Field(description="기사 제목")
-    published_date: str = Field(description="발행일")
-    author: str = Field(description="기자 이름") 
-    content: str = Field(description="기사 본문")
-
-async def extract_naver_news(naver_news_url: str):
-    strategy = LLMExtractionStrategy(
-    llmConfig=LlmConfig(
-        provider="openai/gpt-4o-mini", api_token=os.getenv("OPENAI_API_KEY")
-        ),
-        schema=NaverNewsArticle.model_json_schema(),
-        extraction_type="schema",
-        instruction="""
-        네이버 뉴스 기사에서 다음 정보를 추출하세요:
-        - title: 기사 제목
-        - published_date: 발행일시 
-        - author: 기자 이름
-        - content: 기사 본문
-        """)
-    config = CrawlerRunConfig(
-        exclude_external_links=True,
-        extraction_strategy=strategy,
-        cache_mode=CacheMode.BYPASS
-    )
-    browser_cfg = BrowserConfig(headless=True)
-    async with AsyncWebCrawler(config=browser_cfg) as crawler:
-        result = await crawler.arun(
-            url=naver_news_url, 
-            config=config
-        )
-        article = json.loads(result.extracted_content)
-        return article
-
-naver_news_url = "https://n.news.naver.com/article/654/0000103393?cds=news_media_pc&type=breakingnews"
-result = loop.run_until_complete(extract_naver_news(naver_news_url))
+# 오류 해결 및 정상 실행
 ```
 
 해당코드는 craw4ai의 문서를 참고하여 작성하였으나 동작이 되지 않아 개선한 코드이다.
@@ -94,3 +46,24 @@ result = loop.run_until_complete(extract_naver_news(naver_news_url))
 2. Fine-Tuning Apporach
 - 파인튜닝은 모델을 원하는 방향으로 학습시킬 수 있는 방법 중 하나로 질문 쿼리, 정답 쿼리를 전달 후 학습시키는 방식이다.
 
+#### 2025.03.06 ~
+
+##### 알게된 함수
+1. pd.to_numeric()
+
+```python
+import pandas as pd
+data = ['1','2', 'A']
+
+data = [pd.to_numeric(x) for x in data]
+
+#1번째 실행
+'1' -> 1
+#2번쨰 실행
+'2' -> 2
+#3번째 실행 - 에러 발생
+'A' -> error
+# int, float로 변환 가능한 변수만 처리 해준다.
+```
+2. Typing 라이브러리, Langgraph, SQL QA Chain
+3. 고유명사 DB
