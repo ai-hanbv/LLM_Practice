@@ -1,10 +1,10 @@
 import streamlit as st
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.vectorstores import FAISS, InMemoryVectorStore
+from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.messages.chat import ChatMessage
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_ollama import OllamaLLM, OllamaEmbeddings
+from langchain_ollama import OllamaLLM
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import load_prompt
 from langchain_core.runnables import RunnablePassthrough

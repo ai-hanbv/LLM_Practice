@@ -6,7 +6,7 @@ from langchain_core.prompts import MessagesPlaceholder
 
 이전메세지 및 새로 생성된 메세지들을 홀더에 머무르게 해준다.
 
-#### One, Few-shot
+### One, Few-shot
 ```Python
 from langchain_core.prompts.few_shot import FewShotPromptTemplate
 from langchain_core.prompts import FewShotChatMessagePromptTemplate
@@ -48,3 +48,19 @@ hub.push("닉네임/프롬프트이름", prompt)
 ```
 
 - hashcode 는 commit 탭을 선택하면 버전이 있는데 그 칸에 넣어주면 된다. 넣어주지 않으면 최신 버전으로 선택된다.
+
+### Output Parser
+- LLM의 출력을 구조화된 출력으로 변경하여 사용자에게 전달해줄 수 있는 컴포넌트.
+
+- LLM의 출력에는 메타 데이터, 본문, 토큰량 등등 여러가지의 데이터가 같이 포함되어 있는데 사용자의 입장에서는 답변창에 같이 표현할 시 가독성이 떨어진다. 이 외에 상황에도 사용하기 위함이다.
+
+#### pydanticOutputParser
+- 사용자 정의 구조화된 결과값을 받기 위한 모듈이다. pydantic 라이브러리를 활용하여 지침을 지정, 모델은 이 모듈을 참고하여 결과를 출력
+
+- 프롬프트의 기존 예시를 제공하며 pydantic으로 생성한 클래스의 Field를 참고하여 프롬프트에 삽입해준다.
+
+##### 주요 함수
+1. get_format_instruction()
+- 언어 모델이 출력해야할 정보의 지침
+2. parse()
+- 출력을 특정 구조로 변경
